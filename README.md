@@ -1,10 +1,10 @@
 Assignment 1: Importing Data in R from a Statistical Package and Database Management syestem
-Student Name: Alexandre NATETE
-Registration number: 20252MBI035
-Programme: MSc in Big Data Analytics
-Course: R for Data Science 
-Instructor: Dr. Pacifique Nizeyimana
-University: Adventist University of Central Africa 
+          Student Name: Alexandre NATETE
+          Registration number: 20252MBI035
+          Programme: MSc in Big Data Analytics
+          Course: R for Data Science 
+          Instructor: Dr. Pacifique Nizeyimana
+          University: Adventist University of Central Africa 
 
 
 Overview
