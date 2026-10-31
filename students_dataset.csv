@@ -1,0 +1,11 @@
+StudentID,Name,Age,Gender,Department,MathMarks,ProgrammingMarks,AttendancePercent,FinalResult
+1001,Alice,20,Female,Computer Science,88,95,96,Pass
+1002,John,22,Male,Data Science,74,82,88,Pass
+1003,Marie,21,Female,Information Technology,92,96,98,Pass
+1004,David,23,Male,Computer Science,65,70,75,Pass
+1005,Grace,20,Female,Data Science,81,89,91,Pass
+1006,Eric,24,Male,Information Technology,58,62,68,Fail
+1007,Diane,22,Female,Computer Science,77,80,84,Pass
+1008,Peter,21,Male,Data Science,85,91,93,Pass
+1009,Sarah,23,Female,Information Technology,69,73,79,Pass
+1010,Samuel,20,Male,Computer Science,90,94,97,Pass

@@ -1,0 +1,165 @@
+---
+Programme: MSc Big Data Analytics
+Title: "Assignment 1"
+Topic: "Importing Data from Statistical Packages and Database Management Systems"
+author: "Alexandre NATETE"
+date: "2026-10-18"
+output: html_document
+---
+Task 1: Explore available statistical datasets
+```{r cars}
+# Load iris Dataset
+data(iris)
+
+# Display Dataset
+View(iris)
+
+# Display first six observations
+head(iris)
+
+# Check Dataset  structure
+str(iris)
+
+# Display statistical summary
+summary(iris)
+```
+
+Task 2: Perform statistical analysis
+```{r}
+# Calculate mean
+mean(iris$Sepal.Length)
+
+# Calculate median
+median(iris$Sepal.Length)
+
+# Calculate standard deviation
+sd(iris$Sepal.Length)
+
+# Find minimum and maximum
+min(iris$Sepal.Length)
+max(iris$Sepal.Length)
+
+# Count observations
+nrow(iris)
+
+# Count flowers by species
+table(iris$Species)
+```
+
+Task 3: Import data from an external statistical package
+```{r}
+install.packages("MASS", repos = "https://cloud.r-project.org")
+```
+
+
+```{r}
+# Load Boston dataset
+data("Boston", package = "MASS")
+
+exists("Boston")
+data("Boston")
+
+# Display first six observations
+head(Boston)
+
+# Check dataset structure
+str(Boston)
+
+# Statistical summary
+summary(Boston)
+```
+Task 4 :Import a CSV file:
+```{r}
+data_csv <- read.table("C:\\Users\\NATETE\\Documents\\R FOR DATA SCIENCE\\students_dataset.csv")
+
+# Display the first six rows
+head(data_csv)
+
+# Check the structure
+str(data_csv)
+```
+Task 5:Importing data using APIs
+```{r}
+install.packages("httr2", repos = "https://cloud.r-project.org")
+install.packages("jsonlite", repos = "https://cloud.r-project.org")
+```
+
+```{r api-import}
+
+# Load packages
+library(httr2)
+library(jsonlite)
+
+# API URL
+url <- "https://jsonplaceholder.typicode.com/users"
+
+# Send API request
+response <- httr2::request(url) |>
+  httr2::req_perform()
+
+# Convert JSON response into a data frame
+data_api <- jsonlite::fromJSON(
+  httr2::resp_body_string(response)
+)
+
+# Display first six records
+head(data_api)
+
+# Check dataset structure
+str(data_api)
+
+# Display column names
+names(data_api)
+
+# Check dimensions
+dim(data_api)
+```
+Task 6:Connect RStudio to MySQL
+```{r}
+install.packages("DBI", repos = "https://cloud.r-project.org")
+
+install.packages("RMySQL", repos = "https://cloud.r-project.org")
+
+```
+```{r mysql-connection }
+
+# Load required packages
+library(DBI)
+library(RMySQL)
+
+# Connect to MySQL database
+con <- dbConnect(
+  RMySQL::MySQL(),
+  host = "127.0.0.1",
+  port = 3306,
+  dbname = "student_db",
+  user = "root",
+  password = ""
+)
+
+# Test the connection
+dbGetQuery(con, "SELECT 1 AS test")
+
+# Display database tables
+dbListTables(con)
+
+# Import students table
+students <- dbReadTable(con, "students")
+
+# Display the data
+head(students)
+
+# Check structure
+str(students)
+
+# Display column names
+names(students)
+
+# Close the connection
+dbDisconnect(con)
+
+```
+
+```{r}
+```
+
