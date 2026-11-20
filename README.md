@@ -62,10 +62,6 @@ The projects cover data importing, data management, visualization, statistical a
 - Simple and multiple linear regression.
 - Polynomial regression.
 - Regression assumptions and diagnostic analysis.
-- Interaction effects.
-- Multicollinearity analysis using VIF.
-- Model comparison and interpretation.
-
 ---
 
 ## Tools and Packages
