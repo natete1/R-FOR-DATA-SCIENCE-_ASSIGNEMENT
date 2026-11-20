@@ -1,0 +1,163 @@
+---
+title: "Assignment3"
+author: "Alexandre"
+date: "2026-11-20"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+#Packages and Data Preparation
+```{r}
+library(ggplot2)
+library(dplyr)
+library(knitr)
+
+```
+
+## Load datasets
+```{r}
+data(iris)
+data(mtcars)
+data(airquality)
+```
+
+## Examine dataset dimensions
+```{r}
+dim(iris)
+dim(mtcars)
+dim(airquality)
+```
+# Display first six observations
+```{r}
+head(iris)
+head(mtcars)
+head(airquality)
+```
+# Visualizations Using the Iris Dataset
+```{r}
+#Graph 1: geom_point() – Scatterplot
+ggplot(iris, aes(x = Petal.Length, y = Petal.Width)) +
+  geom_point(aes(color = Species), size = 3) +
+  labs(
+    title = "Relationship Between Petal Length and Width",
+    x = "Petal Length (cm)",
+    y = "Petal Width (cm)",
+    color = "Flower Species"
+  ) +
+  theme_minimal()
+
+
+```
+#Graph 2: geom_boxplot() – Boxplot
+```{r}
+ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(
+    title = "Sepal Length Distribution by Species",
+    x = "Flower Species",
+    y = "Sepal Length (cm)"
+  ) +
+  theme_minimal()
+
+```
+
+#Graph 3: geom_histogram() – Histogram
+```{r}
+ggplot(iris, aes(x = Sepal.Length)) +
+  geom_histogram(
+    bins = 15,
+    fill = "steelblue",
+    color = "white"
+  ) +
+  labs(
+    title = "Distribution of Sepal Length",
+    x = "Sepal Length (cm)",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
+#Graph 4: geom_density()- Density Plot
+```{r}
+ggplot(iris, aes(x = Petal.Length, fill = Species)) +
+  geom_density(alpha = 0.4) +
+  labs(
+    title = "Petal Length Density by Flower Species",
+    x = "Petal Length (cm)",
+    y = "Density",
+    fill = "Species"
+  ) +
+  theme_minimal()
+```
+#Graph 5: geom_bar() – Bar Chart
+```{r}
+ggplot(iris, aes(x = Species)) +
+  geom_bar(fill = "darkgreen") +
+  labs(
+    title = "Number of Flowers by Species",
+    x = "Flower Species",
+    y = "Number of Observations"
+  ) +
+  theme_minimal()
+
+```
+
+# Visualizations Using the Mtcars Dataset
+```{r}
+#Graph 6: geom_col() – Column Chart
+car_average <- mtcars %>%
+  group_by(cyl) %>%
+  summarise(
+    average_mpg = mean(mpg),
+    .groups = "drop"
+  )
+
+ggplot(car_average, aes(x = factor(cyl), y = average_mpg)) +
+  geom_col(fill = "orange") +
+  labs(
+    title = "Average Fuel Efficiency by Number of Cylinders",
+    x = "Number of Cylinders",
+    y = "Average Miles Per Gallon"
+  ) +
+  theme_minimal()
+
+```
+
+#Graph 7: geom_violin() – Violin Plot
+```{r}
+ggplot(diamonds, aes(x = cut, y = price)) +
+  geom_violin(
+    fill = "lightgreen",
+    color = "darkgreen",
+    trim = FALSE
+  ) +
+  labs(
+    title = "Diamond Price Distribution Across Cut Categories",
+    x = "Cut Quality",
+    y = "Price (USD)"
+  ) +
+  theme_minimal()
+
+```
+#Graph 8: geom_jitter() – Jitter Plot
+```{r}
+ggplot(diamonds, aes(x = cut, y = price)) +
+  geom_jitter(
+    width = 0.2,
+    alpha = 0.15,
+    color = "purple"
+  ) +
+  labs(
+    title = "Individual Diamond Prices by Cut Category",
+    x = "Cut Quality",
+    y = "Price (USD)"
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+
+```
+
+#This assignment demonstrated 9 different geometries available in the ggplot2 package using three different R datasets: iris, mtcars.

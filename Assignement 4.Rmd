@@ -1,0 +1,129 @@
+---
+title: "Assignment 4"
+author: "Alexandre"
+date: "2026-11-20"
+output: html_document
+---
+#Practical Application of Built-in Functions
+```{r}
+
+student_marks <- c(65, 72, 80, 85, 90, 68, 75, 95, 88, 78)
+
+student_marks
+
+```
+
+# Calculating the Total Mark
+```{r}
+sum(student_marks)
+```
+#Calculating the Average Marks
+```{r}
+mean(student_marks)
+```
+#The max() function identifies the highest mark recorded
+```{r}
+max(student_marks)
+```
+
+#The min() function identifies the lowest mark in the dataset.
+```{r}
+min(student_marks)
+```
+#The sort() function arranges the marks in ascending order.
+```{r}
+sort(student_marks)
+```
+# Calculating Standard Deviation
+```{r}
+sd(student_marks)
+```
+
+#Creating User-Defined Functions in R
+```{r}
+function_name <- function(arguments) {
+  statements
+  return(result)
+}
+```
+#Creating a Function to Calculate the Average
+```{r}
+calculate_average <- function(marks) {
+  average <- mean(marks)
+  return(average)
+}
+
+marks <- c(60, 75, 80, 85, 95)
+
+calculate_average(marks)
+```
+#Creating a Function with Multiple Arguments
+```{r}
+add_values <- function(first_number, second_number) {
+  result <- first_number + second_number
+  return(result)
+}
+
+add_values(25, 35)
+```
+#This function calculates the area of a rectangle using its length and width.
+```{r}
+calculate_area <- function(length, width) {
+  area <- length * width
+  return(area)
+}
+
+calculate_area(12, 8)
+```
+#Creating a Function with Default Arguments
+```{r}
+welcome_student <- function(name = "Data Big data analytics Student") {
+  message <- paste("Welcome", name)
+  return(message)
+}
+
+welcome_student()
+```
+#Creating a Function to Calculate a Discounted Price
+```{r}
+calculate_discount <- function(price, discount) {
+  final_price <- price - discount
+  return(final_price)
+}
+
+calculate_discount(200, 30)
+```
+#Creating a Function to Calculate the Total of Multiple Values
+```{r}
+calculate_total <- function(numbers) {
+  total <- sum(numbers)
+  return(total)
+}
+
+sales <- c(150, 250, 300, 200)
+
+calculate_total(sales)
+```
+
+```{r}
+calculate_statistics <- function(data) {
+
+  results <- c(
+    Mean = mean(data, na.rm = TRUE),
+    Median = median(data, na.rm = TRUE),
+    Minimum = min(data, na.rm = TRUE),
+    Maximum = max(data, na.rm = TRUE),
+    Standard_Deviation = sd(data, na.rm = TRUE)
+  )
+
+  return(results)
+}
+
+calculate_statistics(student_marks)
+```
+# Conclusion
+his assignment explored the use of built-in and user-defined functions in R programming. Practical examples demonstrated how built-in functions can perform mathematical and statistical calculations, while user-defined functions allow programmers to develop reusable solutions for specific tasks
+```{r}
+
+```
+

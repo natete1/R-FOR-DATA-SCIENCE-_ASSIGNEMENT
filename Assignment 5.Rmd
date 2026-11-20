@@ -1,0 +1,195 @@
+---
+title: "Assignment 5"
+author: "Alexandre"
+date: "2026-11-20"
+output: html_document
+---
+
+#Loading Required Packages
+```{r}
+library(readr)
+library(car)
+library(glmnet)
+library(rpart)
+library(randomForest)
+```
+
+#Importing the Dataset
+```{r}
+student <- read_csv("Student_marks.csv")
+```
+
+
+```{r}
+head(student)
+```
+
+# Display the number of observations and variables
+```{r}
+
+dim(student)
+```
+
+# Display variable names
+```{r}
+
+names(student)
+```
+
+## Examine the structure of the dataset
+```{r}
+str(student)
+```
+
+
+# Generate descriptive statistics
+```{r}
+
+summary(student)
+```
+
+
+#Renaming Variables
+```{r}
+names(student) <- c(
+  "School",
+  "Gender",
+  "Age",
+  "Residence",
+  "Family_Size",
+  "Parent_Status",
+  "Mother_Education",
+  "Father_Education",
+  "Mother_Occupation",
+  "Father_Occupation",
+  "School_Choice_Reason",
+  "Guardian",
+  "Travel_Time",
+  "Study_Time",
+  "Past_Failures",
+  "School_Support",
+  "Family_Support",
+  "Paid_Classes",
+  "Extracurricular_Activities",
+  "Nursery_Attendance",
+  "Higher_Education_Intent",
+  "Internet_Access",
+  "Romantic_Relationship",
+  "Family_Relationship",
+  "Free_Time",
+  "Social_Outings",
+  "Workday_Alcohol",
+  "Weekend_Alcohol",
+  "Health_Status",
+  "School_Absences",
+  "First_Period_Grade",
+  "Second_Period_Grade",
+  "Final_Grade"
+)
+
+names(student)
+```
+
+#Converting Categorical Variables into Factors
+```{r}
+categorical_variables <- c(
+  "School",
+  "Gender",
+  "Residence",
+  "Family_Size",
+  "Parent_Status",
+  "Mother_Occupation",
+  "Father_Occupation",
+  "School_Choice_Reason",
+  "Guardian",
+  "School_Support",
+  "Family_Support",
+  "Paid_Classes",
+  "Extracurricular_Activities",
+  "Nursery_Attendance",
+  "Higher_Education_Intent",
+  "Internet_Access",
+  "Romantic_Relationship"
+)
+
+student[categorical_variables] <- lapply(
+  student[categorical_variables],
+  factor
+)
+
+str(student)
+```
+# Checking Missing Values
+```{r}
+# Count missing values in each variable
+colSums(is.na(student))
+
+# Calculate the total number of missing values
+sum(is.na(student))
+student_clean <- na.omit(student)
+```
+#3. Simple Linear Regression
+```{r}
+simple_model <- lm(
+  Final_Grade ~ Study_Time,
+  data = student_clean
+)
+
+summary(simple_model)
+```
+
+```{r}
+plot(
+  student_clean$Study_Time,
+  student_clean$Final_Grade,
+  main = "Relationship Between Study Time and Final Grades",
+  xlab = "Study Time",
+  ylab = "Final Grade",
+  pch = 19
+)
+
+abline(simple_model, lwd = 2)
+```
+#Multiple Linear Regression
+```{r}
+multiple_model <- lm(
+  Final_Grade ~ Age +
+    Mother_Education +
+    Father_Education +
+    Study_Time +
+    Past_Failures +
+    School_Absences +
+    Social_Outings +
+    Health_Status +
+    Gender +
+    Internet_Access,
+  data = student_clean
+)
+
+summary(multiple_model)
+```
+#Polynomial Regression
+```{r}
+polynomial_model <- lm(
+  Final_Grade ~ Age + I(Age^2),
+  data = student_clean
+)
+
+summary(polynomial_model)
+```
+# Building the Interaction Model
+```{r}
+interaction_model <- lm(
+  Final_Grade ~ Study_Time * Past_Failures +
+    Age +
+    School_Absences +
+    Gender,
+  data = student_clean
+)
+
+summary(interaction_model)
+```
+```{r}
+
+```
+
